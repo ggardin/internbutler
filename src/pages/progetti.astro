@@ -1,0 +1,19 @@
+---
+import { db, Project } from 'astro:db';
+import Layout from "../layouts/Layout.astro";
+
+const projects = await db.select().from(Project);
+---
+
+<Layout title="Progetti">
+
+	{
+		projects.map(({ name, description }) => (
+			<article>
+				<h4>{name}</h4>
+				<p>{description}</p>
+			</article>
+		))
+	}
+
+</Layout>

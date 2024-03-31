@@ -1,0 +1,19 @@
+---
+import { db, Employee } from 'astro:db';
+import Layout from "../layouts/Layout.astro";
+
+const employees = await db.select().from(Employee);
+---
+
+<Layout title="Rubrica">
+
+	{
+		employees.map(({ name, email }) => (
+			<article>
+				<h4>{name}</h4>
+				<a href={email} target="_blank">{email}</>
+			</article>
+		))
+	}
+
+</Layout>
